@@ -1,0 +1,20 @@
+.button {
+    -fx-background-color: linear-gradient(to bottom, #5270d9, #4764c4);
+    -fx-background-radius: 6;
+    -fx-background-insets: 0, 1;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #4764c4, #3a56a9);
+    -fx-cursor: HAND;
+}
+
+.button:pressed, .button:default:pressed {
+    -fx-background-color: linear-gradient(to bottom, #3a56a9, #4764c4);
+    -fx-background-insets: 2 1 0 1, 3 2 1 2;
+    -fx-text-fill: #e5e5e5;
+}
