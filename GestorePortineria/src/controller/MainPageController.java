@@ -79,7 +79,7 @@ public class MainPageController implements Initializable {
     	this.employeesManager = new EmployeesManagerImpl();
     	this.noteManager = new NoteManagerImpl();
     	noteManager.getList().forEach(n -> this.noteBox.getItems().add(n.getCreationDate()));
-    	//noteBox.setOnAction(this::updateText);
+    	noteBox.setOnAction(this::updateText);
         try {
 			userCall(null);
 		} catch (SQLException e) {
@@ -243,7 +243,7 @@ public class MainPageController implements Initializable {
     }
     
 
-   /* private void updateText(ActionEvent event) {
+   private void updateText(ActionEvent event) {
     	String textDate = this.noteBox.getValue();
     	String note = noteManager.getList().stream()
 				   .filter(n -> n.getCreationDate().equals(textDate))
