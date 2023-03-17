@@ -6,14 +6,15 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import model.Employee;
-import model.DataManager;
+import model.EmployeesManager;
 
-public class EmployeesManagerImpl implements DataManager<Employee> {
+public class EmployeesManagerImpl implements EmployeesManager {
 
-    private static Set<Employee> employees = new HashSet<>();
-
+    private static final Set<Employee> employees = new HashSet<>();
+	
     public EmployeesManagerImpl() {
-    	this.getData();
+    	if(EmployeesManagerImpl.employees.isEmpty())
+    		this.getData();
     }
     
     private void getData() {
@@ -62,7 +63,7 @@ public class EmployeesManagerImpl implements DataManager<Employee> {
     }
 
     @Override
-    public void updateLastAccess(Employee employee, String lastAccess) throws SQLException {
+    public void update(Employee employee, String lastAccess) throws SQLException {
         try (Connection connection = SQLConnector.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement("UPDATE Employees SET lastAccess = ? WHERE username = ?")) {
             updateStatement.setString(1, lastAccess);

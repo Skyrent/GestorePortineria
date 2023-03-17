@@ -47,10 +47,12 @@ public class CreateDatabase {
             keyStatement.close();
 
             PreparedStatement textStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Text (" +
-            															  "text TEXT(1000))");
+            															  "id INTEGER PRIMARY KEY, " +
+            															  "text TEXT(1000), " +
+            															  "date TEXT(50))");
             textStatement.execute();
             textStatement.close();
-
+            /*
             countStatement = connection.prepareStatement("SELECT COUNT(*) FROM Text");
             resultSet = countStatement.executeQuery();
             
@@ -63,7 +65,7 @@ public class CreateDatabase {
             
             resultSet.close();
             countStatement.close();
-
+			*/
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

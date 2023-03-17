@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,14 +27,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.DataManager;
 import model.Employee;
+import model.EmployeesManager;
 import model.Key;
+import model.KeysManager;
 import model.Note;
+import model.NoteManager;
 import model.implementation.KeyImpl;
 import model.implementation.EmployeesManagerImpl;
 import model.implementation.KeysManagerImpl;
 import model.implementation.NoteImpl;
+import model.implementation.NoteManagerImpl;
 
 public class MainPageController implements Initializable {
 
@@ -53,6 +58,9 @@ public class MainPageController implements Initializable {
     
     @FXML
     private TableColumn<Key, String> tabbleKeyTag, tableKeyHolder, tableKeyLastAccess;
+    
+    @FXML
+    private ChoiceBox<String> noteBox;
 
     @FXML
     private TextArea textArea;
@@ -60,15 +68,18 @@ public class MainPageController implements Initializable {
     @FXML
     private TextField txtLastAccess, txtName, txtSurname, txtUsername, newKeyTag, modifyKeyHolder;
         
-    private DataManager<Key> keysManager;
-    private DataManager<Employee> employeesManager;
-    private Note text;
+    private KeysManager keysManager;
+    private EmployeesManager employeesManager;
+    private NoteManager noteManager;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	keysManager = new KeysManagerImpl();
-    	employeesManager = new EmployeesManagerImpl();
-    	text = new NoteImpl();
+    	this.keysManager = new KeysManagerImpl();
+		this.keysManager.getList().forEach(k -> this.keyList.getItems().add(k.getTag()));
+    	this.employeesManager = new EmployeesManagerImpl();
+    	this.noteManager = new NoteManagerImpl();
+    	noteManager.getList().forEach(n -> this.noteBox.getItems().add(n.getCreationDate()));
+    	//noteBox.setOnAction(this::updateText);
         try {
 			userCall(null);
 		} catch (SQLException e) {
@@ -91,7 +102,7 @@ public class MainPageController implements Initializable {
     	this.txtName.setText(user.getName());
     	this.txtSurname.setText(user.getSurname());
     	this.txtUsername.setText(user.getUsername());
-    	employeesManager.updateLastAccess(user, setCurrentDateTime());
+    	employeesManager.update(user, setCurrentDateTime());
     	this.txtLastAccess.setText(user.getLastAccess());
     	
     	this.utente.setVisible(true);
@@ -166,8 +177,6 @@ public class MainPageController implements Initializable {
     		this.utente.setVisible(false);
     		this.note.setVisible(false);
     	}
-    	if (this.keyList.getItems().isEmpty()) 
-    		this.keysManager.getList().forEach(k -> this.keyList.getItems().add(k.getTag()));
     	this.keys.setVisible(true);
     }
 
@@ -176,9 +185,8 @@ public class MainPageController implements Initializable {
     void removeKey(ActionEvent event) throws SQLException {
         String selectedKey = keyList.getSelectionModel().getSelectedItem();
         if (selectedKey != null) {
-        	keysManager.remove(selectedKey);
-        	keyList.getItems().clear();
-        	this.keysManager.getList().forEach(k -> this.keyList.getItems().add(k.getTag()));
+            keysManager.remove(selectedKey);
+            keyList.getItems().removeIf(k -> k.equals(selectedKey));
         }
     }
 
@@ -192,7 +200,7 @@ public class MainPageController implements Initializable {
             Key key = keyIterator.next();
             if (key.getTag().equals(selectedKey)) {
             	String whenChange = setCurrentDateTime();
-            	keysManager.updateLastAccess(key, whenChange);
+            	keysManager.update(key, whenChange);
                 key.setHolder(newHolder);
                 key.setLastAccess(whenChange);
                 break;
@@ -204,8 +212,7 @@ public class MainPageController implements Initializable {
     void addKey(ActionEvent event) throws SQLException {
     	if (!newKeyTag.getText().isBlank())
     		keysManager.add(new KeyImpl(newKeyTag.getText(), "Portineria", Optional.of(setCurrentDateTime())));
-    		keyList.getItems().clear();
-    		this.keysManager.getList().forEach(k -> this.keyList.getItems().add(k.getTag()));
+    		keyList.getItems().add(newKeyTag.getText());
     }
     
     /*
@@ -219,15 +226,32 @@ public class MainPageController implements Initializable {
     		this.utente.setVisible(false);
     		this.keys.setVisible(false);
     	}
-    	this.textArea.setText(text.getNote());
+    	this.textArea.setText(noteManager.getList().stream()
+    	        .max(Comparator.comparing(n -> n.getCreationDate()))
+    	        .map(Note::getNote)
+    	        .orElse(""));
+    	
 		this.note.setVisible(true);
     }
 
     @FXML
     void saveTextArea(ActionEvent event) throws SQLException {
-    	text.updateNote(this.textArea.getText());
+    	String note = this.textArea.getText();
+    	String date = setCurrentDateTime();
+    	this.noteManager.add(new NoteImpl(note, date));
+    	this.noteBox.getItems().add(date);
     }
+    
 
+   /* private void updateText(ActionEvent event) {
+    	String textDate = this.noteBox.getValue();
+    	String note = noteManager.getList().stream()
+				   .filter(n -> n.getCreationDate().equals(textDate))
+				   .map(n -> n.getNote())
+				   .findFirst().orElse(" ");
+		this.textArea.setText(note);
+    }
+    
     /*
      * ALTRO
      */
@@ -241,7 +265,7 @@ public class MainPageController implements Initializable {
     }
     
 	private static String setCurrentDateTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm:ss");
         Date date = new Date();
 		return formatter.format(date);
     }

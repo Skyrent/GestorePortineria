@@ -3,9 +3,8 @@ package controller;
 import java.sql.SQLException;
 import application.Main;
 import javafx.fxml.FXML;
-import model.*;
+import model.EmployeesManager;
 import model.implementation.EmployeesManagerImpl;
-
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
@@ -23,7 +22,7 @@ public class LogInController {
     @FXML
     private Text wrongLogIn;
 
-    private DataManager<Employee> employees = new EmployeesManagerImpl();
+    private EmployeesManager employees = new EmployeesManagerImpl();
     
     
     @FXML
