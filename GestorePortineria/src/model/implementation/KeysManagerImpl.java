@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+import model.DataManager;
 import model.Key;
 import model.KeysManager;
 
@@ -23,7 +25,7 @@ public class KeysManagerImpl implements KeysManager {
     
     private void getData() {
         if (KeysManagerImpl.keys.isEmpty()) {
-			try (Connection connection = SQLConnector.getConnection();
+			try (Connection connection = DataManager.getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT tag, holder, lastAccess FROM Keys")) {
 				while (resultSet.next()) {
@@ -41,7 +43,7 @@ public class KeysManagerImpl implements KeysManager {
 
     @Override
     public void add(Key key) throws SQLException {
-        try (Connection connection = SQLConnector.getConnection();
+        try (Connection connection = DataManager.getConnection();
             PreparedStatement checkStatement = connection.prepareStatement("SELECT COUNT(*) FROM Keys WHERE tag = ?")) {
             checkStatement.setString(1, key.getTag());
             ResultSet resultSet = checkStatement.executeQuery();
@@ -63,7 +65,7 @@ public class KeysManagerImpl implements KeysManager {
     
     @Override
     public void update(Key key, String lastAccess) throws SQLException {
-        try (Connection connection = SQLConnector.getConnection();
+        try (Connection connection = DataManager.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement("UPDATE Keys SET holder = ?, lastAccess = ? WHERE tag = ?")) {
             updateStatement.setString(1, key.getHolder());
             updateStatement.setString(2, key.getLastAccess());
@@ -76,7 +78,7 @@ public class KeysManagerImpl implements KeysManager {
     
 	@Override
 	public void remove(String key) throws SQLException {
-        try (Connection connection = SQLConnector.getConnection();
+        try (Connection connection = DataManager.getConnection();
             PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM Keys WHERE tag = ?")) {
             deleteStatement.setString(1, key);
             deleteStatement.executeUpdate();

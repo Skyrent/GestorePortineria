@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+
+import model.DataManager;
 import model.Note;
 import model.NoteManager;
 
@@ -20,7 +22,7 @@ public class NoteManagerImpl implements NoteManager {
 	}
 	
     private void getData() {
-		try (Connection connection = SQLConnector.getConnection();
+		try (Connection connection = DataManager.getConnection();
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT text, date FROM Text")) {
 			while (resultSet.next()) {
@@ -36,7 +38,7 @@ public class NoteManagerImpl implements NoteManager {
     
 	@Override
 	public void add(Note note) throws SQLException {
-        try (Connection connection = SQLConnector.getConnection();
+        try (Connection connection = DataManager.getConnection();
              PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO Text (text, date) VALUES (?, ?)")) {
                 insertStatement.setString(1, note.getNote());
                 insertStatement.setString(2, note.getCreationDate());

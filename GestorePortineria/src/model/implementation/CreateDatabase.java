@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.DataManager;
+
 public class CreateDatabase {
     public static void create() {
 
-        try (Connection connection = SQLConnector.getConnection()) {
+        try (Connection connection = DataManager.getConnection()) {
              
         	PreparedStatement employeeStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Employees (" +
             		 												   		  "id INTEGER PRIMARY KEY, " +
@@ -52,21 +54,6 @@ public class CreateDatabase {
             															  "date TEXT(50))");
             textStatement.execute();
             textStatement.close();
-            /*
-            countStatement = connection.prepareStatement("SELECT COUNT(*) FROM Text");
-            resultSet = countStatement.executeQuery();
-            
-            if (resultSet.getInt(1) == 0) {
-                PreparedStatement insertTextStmt = connection.prepareStatement("INSERT INTO Text (text) VALUES (?)");
-                insertTextStmt.setString(1, null);
-                insertTextStmt.execute();
-                insertTextStmt.close();
-            }
-            
-            resultSet.close();
-            countStatement.close();
-			*/
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

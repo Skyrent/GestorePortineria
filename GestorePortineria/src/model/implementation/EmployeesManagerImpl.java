@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+import model.DataManager;
 import model.Employee;
 import model.EmployeesManager;
 
@@ -19,7 +21,7 @@ public class EmployeesManagerImpl implements EmployeesManager {
     
     private void getData() {
         if (EmployeesManagerImpl.employees.isEmpty()) {
-            try (Connection connection = SQLConnector.getConnection();
+            try (Connection connection = DataManager.getConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT name, surname, username, password, lastAccess FROM Employees")) {
                     while (resultSet.next()) {
@@ -39,7 +41,7 @@ public class EmployeesManagerImpl implements EmployeesManager {
 
     @Override
     public void add(Employee employee) throws SQLException {
-        try (Connection connection = SQLConnector.getConnection();
+        try (Connection connection = DataManager.getConnection();
             PreparedStatement checkStatement = connection.prepareStatement("SELECT COUNT(*) FROM Employees WHERE username = ?")) {
             checkStatement.setString(1, employee.getUsername());
             ResultSet resultSet = checkStatement.executeQuery();
@@ -64,7 +66,7 @@ public class EmployeesManagerImpl implements EmployeesManager {
 
     @Override
     public void update(Employee employee, String lastAccess) throws SQLException {
-        try (Connection connection = SQLConnector.getConnection();
+        try (Connection connection = DataManager.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement("UPDATE Employees SET lastAccess = ? WHERE username = ?")) {
             updateStatement.setString(1, lastAccess);
             updateStatement.setString(2, employee.getUsername());
@@ -79,7 +81,7 @@ public class EmployeesManagerImpl implements EmployeesManager {
 
     @Override
     public void remove(String username) throws SQLException {
-        try (Connection connection = SQLConnector.getConnection();
+        try (Connection connection = DataManager.getConnection();
             PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM Employees WHERE username = ?")) {
             deleteStatement.setString(1, username);
             deleteStatement.executeUpdate();

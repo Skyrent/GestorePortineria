@@ -9,8 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class Launcher extends Application {
-	
-	private static Stage stage;	
+public static Stage stage;	
 	
 	@Override
 	public void start(Stage primaryStage) {
