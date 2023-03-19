@@ -1,7 +1,7 @@
 package controller;
 
 import java.sql.SQLException;
-import application.Main;
+import application.Launcher;
 import javafx.fxml.FXML;
 import model.EmployeesManager;
 import model.implementation.EmployeesManagerImpl;
@@ -26,7 +26,7 @@ public class LogInController {
     
     
     @FXML
-    public void userLogIn(ActionEvent event) throws SQLException, IOException {
+    public void userLogIn(ActionEvent event) throws Exception {
 		if (employees.getList().stream()
 							 	.filter(x -> x.canLogIn(this.username.getText(), 
 											 			this.password.getText()))
@@ -36,9 +36,9 @@ public class LogInController {
      		wrongLogIn.setText("Credenziali non valide!");
  	}
  	
-	private void changeScene() throws IOException {
- 		Main m = new Main();
- 			 m.changeScene("/view/MainPage.fxml");
+	private void changeScene() throws Exception {
+ 		Launcher app = new Launcher();
+ 			 app.changeScene("/view/MainPage.fxml");
  	}
   
 }

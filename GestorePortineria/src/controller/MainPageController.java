@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Optional;
-import application.Main;
+import application.Launcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -257,11 +257,11 @@ public class MainPageController implements Initializable {
      */
     
     @FXML
-    void logOut(ActionEvent event) throws IOException {
+    void logOut(ActionEvent event) throws Exception {
     	keysManager.clear();
     	employeesManager.clear();
-    	Main main = new Main();
-		main.changeScene("/view/LogIn.fxml");
+    	Launcher launch = new Launcher();
+		launch.changeScene("/view/LogIn.fxml");
     }
     
 	private static String setCurrentDateTime() {
