@@ -265,7 +265,7 @@ public class MainPageController implements Initializable {
     }
     
 	private static String setCurrentDateTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm");
         Date date = new Date();
 		return formatter.format(date);
     }

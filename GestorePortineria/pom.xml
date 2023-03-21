@@ -7,7 +7,7 @@
   <groupId>GestorePortineria</groupId>
   <artifactId>GestorePortineria</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar </packaging>
+  <packaging>jar</packaging>
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,6 +53,18 @@
 
   <dependencies>
   
+  <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.2.0</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.2.0</version>
+    </dependency>
+    
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
@@ -70,7 +82,6 @@
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.41.0.0</version>
     </dependency>
-
   </dependencies>
  	
 </project>

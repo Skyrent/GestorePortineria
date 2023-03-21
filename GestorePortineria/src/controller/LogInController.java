@@ -1,11 +1,9 @@
 package controller;
 
-import java.sql.SQLException;
 import application.Launcher;
 import javafx.fxml.FXML;
 import model.EmployeesManager;
 import model.implementation.EmployeesManagerImpl;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
