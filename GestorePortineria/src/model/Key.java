@@ -1,7 +1,5 @@
 package model;
 
-import java.sql.SQLException;
-
 public interface Key {
 
 	public String getTag();
@@ -10,7 +8,7 @@ public interface Key {
 
 	public String getHolder();
 		
-	void setHolder(String holder) throws SQLException;
+	void setHolder(String holder);
 
 	void setLastAccess(String lastAccess);
 

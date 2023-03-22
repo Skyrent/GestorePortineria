@@ -83,5 +83,7 @@ public class EmployeeImpl implements Employee {
 				&& Objects.equals(name, other.name) && Objects.equals(password, other.password)
 				&& Objects.equals(surname, other.surname) && Objects.equals(username, other.username);
 	}
+
+	
 	
 }

@@ -56,6 +56,4 @@ public class NoteManagerImpl implements NoteManager {
 		return NoteManagerImpl.notes;
 	}
 
-
-
 }
