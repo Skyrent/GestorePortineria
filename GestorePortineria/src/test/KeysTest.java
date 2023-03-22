@@ -70,7 +70,7 @@ class KeysTest {
         key1.setHolder("holder3");
         key1.setLastAccess("21/03 14:02");
         try {
-            keysManager.update(key1, key1.getLastAccess());
+            keysManager.update(key1);
         } catch (SQLException e) {
             fail("Errore in KeysManager in testUpdate");
         }

@@ -1,5 +1,7 @@
 package model.implementation;
 
+import java.util.Objects;
+
 import model.Note;
 
 
@@ -22,5 +24,22 @@ public class NoteImpl implements Note {
     public String getNote() {
     	return this.note;
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(creationDate, note);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NoteImpl other = (NoteImpl) obj;
+		return Objects.equals(creationDate, other.creationDate) && Objects.equals(note, other.note);
+	}
 
 }

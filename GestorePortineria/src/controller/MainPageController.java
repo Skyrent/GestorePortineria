@@ -197,12 +197,10 @@ public class MainPageController implements Initializable {
         String newHolder = modifyKeyHolder.getText();
         Iterator<Key> keyIterator = keysManager.getList().iterator();
         while (keyIterator.hasNext()) {
-            Key key = keyIterator.next();
-            if (key.getTag().equals(selectedKey)) {
-            	String whenChange = setCurrentDateTime();
-            	keysManager.update(key, whenChange);
-                key.setHolder(newHolder);
-                key.setLastAccess(whenChange);
+            Key temp = keyIterator.next();
+            if (temp.getTag().equals(selectedKey)) {
+            	Key key = new KeyImpl(temp.getTag(), newHolder, Optional.of(setCurrentDateTime()));
+            	keysManager.update(key);
                 break;
             }
         }
@@ -265,7 +263,7 @@ public class MainPageController implements Initializable {
     }
     
 	private static String setCurrentDateTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm:ss");
         Date date = new Date();
 		return formatter.format(date);
     }

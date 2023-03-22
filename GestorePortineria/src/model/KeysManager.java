@@ -11,7 +11,7 @@ public interface KeysManager extends DataManager<Key> {
 	@Override
 	Set<Key> getList();
     
-    void update(Key key, String lastAccess) throws SQLException;
+    void update(Key key) throws SQLException;
 	
     void remove(String username) throws SQLException;
     

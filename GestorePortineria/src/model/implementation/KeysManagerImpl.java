@@ -54,7 +54,7 @@ public class KeysManagerImpl implements KeysManager {
                 insertStatement.setString(3, key.getLastAccess());
                 insertStatement.executeUpdate();
                 insertStatement.close();
-                KeysManagerImpl.keys.add(key);
+                keys.add(key);
             }
             resultSet.close();
             checkStatement.close();
@@ -64,13 +64,17 @@ public class KeysManagerImpl implements KeysManager {
     }
     
     @Override
-    public void update(Key key, String lastAccess) throws SQLException {
+    public void update(Key key) throws SQLException {
         try (Connection connection = DataManager.getConnection();
             PreparedStatement updateStatement = connection.prepareStatement("UPDATE Keys SET holder = ?, lastAccess = ? WHERE tag = ?")) {
             updateStatement.setString(1, key.getHolder());
             updateStatement.setString(2, key.getLastAccess());
             updateStatement.setString(3, key.getTag());
             updateStatement.executeUpdate();
+            keys.forEach(e -> {
+            				   if(e.getTag().equals(key.getTag()))
+            				   e.setHolder(key.getHolder());                
+				   			   });
         } catch (SQLException e) {
             System.out.println("Errore nell'aggiornamento di una chiave nel database: " + e);
         }
@@ -82,7 +86,7 @@ public class KeysManagerImpl implements KeysManager {
             PreparedStatement deleteStatement = connection.prepareStatement("DELETE FROM Keys WHERE tag = ?")) {
             deleteStatement.setString(1, key);
             deleteStatement.executeUpdate();
-            KeysManagerImpl.keys.removeIf(k -> k.getTag().equals(key));
+            keys.removeIf(k -> k.getTag().equals(key));
         } catch (SQLException e) {
             System.out.println("Errore nella rimozione di una chiave dal database: " + e);
         }
@@ -95,7 +99,7 @@ public class KeysManagerImpl implements KeysManager {
 
 	@Override
 	public void clear() {
-		KeysManagerImpl.keys.clear();
+		keys.clear();
 	}
 	
 }
