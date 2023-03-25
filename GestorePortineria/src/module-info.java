@@ -4,8 +4,8 @@ module GestorePortineria {
 	exports application;
 	exports model;
 
-	requires java.sql;
-	requires javafx.base;
+	requires transitive java.sql;
+	requires transitive javafx.base;
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires javafx.graphics;

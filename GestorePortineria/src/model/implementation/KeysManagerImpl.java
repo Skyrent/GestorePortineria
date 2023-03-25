@@ -19,7 +19,7 @@ public class KeysManagerImpl implements KeysManager {
 	private	static final Set<Key> keys = new HashSet<>();
 	
     public KeysManagerImpl() {
-    	if(KeysManagerImpl.keys.isEmpty())
+    	if(keys.isEmpty())
     		this.getData();
     }
     

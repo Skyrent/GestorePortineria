@@ -37,6 +37,5 @@ public class LogInController {
 	private void changeScene() throws Exception {
  		Launcher app = new Launcher();
  			 app.changeScene("/view/MainPage.fxml");
- 	}
-  
+ 	}	
 }

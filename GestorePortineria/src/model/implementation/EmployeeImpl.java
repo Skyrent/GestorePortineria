@@ -11,7 +11,8 @@ public class EmployeeImpl implements Employee {
 	private final String username;
 	private final String password;
 	private Optional<String> lastAccess;
-	private boolean loggedIn;
+	private boolean loggedIn = false, 
+					passwordAccess = true;
 	
 	public EmployeeImpl(String name, String surname, String username, String password, Optional<String> lastAccess) {
 		this.name = name;
@@ -39,7 +40,13 @@ public class EmployeeImpl implements Employee {
 	
 	@Override
 	public String getPassword() {
-		return this.password;
+		if(passwordAccess) {
+			this.passwordAccess = false;
+			return this.password;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	@Override
@@ -59,7 +66,7 @@ public class EmployeeImpl implements Employee {
 	
 	@Override
 	public boolean canLogIn(String username, String password) {
-	    if (this.getUsername().equals(username) && this.getPassword().equals(password)) {
+	    if (this.getUsername().equals(username) && this.password.equals(password)) {
 	    	this.loggedIn = true;
 	    } 
 	   	return this.loggedIn;

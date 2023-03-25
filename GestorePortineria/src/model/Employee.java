@@ -8,8 +8,6 @@ public interface Employee {
 
 	String getUsername();
 
-	String getPassword();
-
 	String getLastAccess();
 
 	boolean logged();
@@ -17,5 +15,7 @@ public interface Employee {
 	void setLastAccess(String lastAccess);
 
 	boolean canLogIn(String username, String password);
+
+	String getPassword();
 
 }

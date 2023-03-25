@@ -9,6 +9,5 @@ public interface NoteManager extends DataManager<Note> {
     void add(Note item) throws SQLException;
 
     @Override
-    Set<Note> getList();
-    
+    Set<Note> getList();   
 }

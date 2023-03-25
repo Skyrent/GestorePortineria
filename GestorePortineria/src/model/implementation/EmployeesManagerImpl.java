@@ -13,10 +13,10 @@ import model.EmployeesManager;
 public class EmployeesManagerImpl implements EmployeesManager {
 
     private static final Set<Employee> employees = new HashSet<>();
-	
+
     public EmployeesManagerImpl() {
-    	if(EmployeesManagerImpl.employees.isEmpty())
-    		this.getData();
+    	if(employees.isEmpty())
+    		this.getData();       
     }
     
     private void getData() {
@@ -101,7 +101,4 @@ public class EmployeesManagerImpl implements EmployeesManager {
 	public void clear() {
 		EmployeesManagerImpl.employees.clear();
 	}
-	
-	
-
 }

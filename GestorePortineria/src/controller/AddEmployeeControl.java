@@ -11,7 +11,7 @@ import model.Employee;
 import model.implementation.EmployeeImpl;
 import model.implementation.EmployeesManagerImpl;
 
-public class addEmployeeControl {
+public class AddEmployeeControl {
 
 	    @FXML
 	    private TextField txtName;
