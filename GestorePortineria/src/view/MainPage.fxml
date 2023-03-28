@@ -17,13 +17,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainPageController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainPageController">
    <children>
       <BorderPane layoutX="-12.0" layoutY="-15.0" prefHeight="425.0" prefWidth="647.0">
          <top>
             <HBox prefHeight="60.0" prefWidth="651.0" style="-fx-background-color: #155679;" BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestore Portineria" textAlignment="CENTER" translateX="-10.0" translateY="20.0" wrappingWidth="275.1002197265625">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestore Portineria" textAlignment="CENTER" translateX="15.0" translateY="23.0" wrappingWidth="275.1002197265625">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -31,12 +31,13 @@
                         <Insets />
                      </HBox.margin>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#logOut" text="LogOut" translateX="220.0">
+                  <Button mnemonicParsing="false" onAction="#logOut" text="LogOut" translateX="215.0">
                      <HBox.margin>
                         <Insets left="55.0" top="17.0" />
                      </HBox.margin>
                   </Button>
-               </children></HBox>
+               </children>
+            </HBox>
          </top>
          <left>
             <VBox prefHeight="365.0" prefWidth="154.0" style="-fx-background-color: #154279;" BorderPane.alignment="CENTER">
@@ -44,15 +45,18 @@
                   <Button mnemonicParsing="false" onAction="#userCall" prefHeight="60.0" prefWidth="145.0" text="Utente">
                      <VBox.margin>
                         <Insets top="30.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#registerCall" prefHeight="60.0" prefWidth="145.0" text="Registro">
                      <VBox.margin>
                         <Insets top="15.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#keyCall" prefHeight="60.0" prefWidth="145.0" text="Chiavi">
                      <VBox.margin>
                         <Insets top="15.0" />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#noteCall" prefHeight="60.0" prefWidth="145.0" text="Note">
                      <VBox.margin>
                         <Insets top="15.0" />
@@ -64,7 +68,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="utente" layoutY="2.0" prefHeight="355.0" prefWidth="493.0" visible="false">
+                  <AnchorPane fx:id="utente" layoutY="2.0" prefHeight="365.0" prefWidth="500.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Text layoutX="37.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="41.41796875">
                            <font>
@@ -81,8 +85,8 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtName" editable="false" layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="14.0" />
-                        <TextField fx:id="txtSurname" editable="false" layoutX="136.0" layoutY="67.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="txtName" editable="false" layoutX="16.0" layoutY="67.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="16.0" />
+                        <TextField fx:id="txtSurname" editable="false" layoutX="141.0" layoutY="67.0" prefHeight="25.0" prefWidth="100.0" />
                         <Text layoutX="48.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimo accesso">
                            <font>
                               <Font size="20.0" />
@@ -96,8 +100,8 @@
                               <ListView fx:id="listRemovibleEmployee" layoutX="7.0" layoutY="29.0" prefHeight="69.0" prefWidth="161.0" />
                            </children>
                         </AnchorPane>
-                        <Button layoutX="278.0" layoutY="258.0" mnemonicParsing="false" onAction="#newUser" prefHeight="40.0" prefWidth="200.0" text="Registra nuovo utente" AnchorPane.rightAnchor="15.333333333333314" />
-                        <Button layoutX="278.0" layoutY="197.0" mnemonicParsing="false" onAction="#removeUserCall" prefHeight="40.0" prefWidth="200.0" text="Cancella altro utente" AnchorPane.rightAnchor="15.333333333333314" />
+                        <Button layoutX="278.0" layoutY="258.0" mnemonicParsing="false" onAction="#newUser" prefHeight="40.0" prefWidth="200.0" text="Registra utente" AnchorPane.rightAnchor="15.333333333333314" />
+                        <Button layoutX="278.0" layoutY="197.0" mnemonicParsing="false" onAction="#removeUserCall" prefHeight="40.0" prefWidth="200.0" text="Cancella utente" AnchorPane.rightAnchor="15.333333333333314" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="registro" prefHeight="354.0" prefWidth="493.0" visible="false">
@@ -128,7 +132,8 @@
                               </Tab>
                           </tabs>
                         </TabPane>
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="keys" layoutY="-1.0" prefHeight="357.0" prefWidth="493.0" visible="false">
                      <children>
                         <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addKey" prefHeight="100.0" prefWidth="150.0" text="Aggiungi chiave" />
@@ -147,7 +152,8 @@
                            </font>
                         </Text>
                         <ListView fx:id="keyList" layoutX="172.0" layoutY="129.0" prefHeight="214.0" prefWidth="120.0" />
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="note" prefHeight="360.0" prefWidth="500.0" visible="false">
                      <children>
                         <TextArea fx:id="textArea" layoutX="50.0" layoutY="32.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="400.0" text="&#10;&#10;">

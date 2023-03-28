@@ -10,20 +10,20 @@ import javafx.scene.Scene;
 
 public class Launcher extends Application {
 public static Stage stage;	
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			stage = primaryStage;
-			stage.setResizable(false);
 			changeScene("/view/LogIn.fxml");
+     		Launcher.stage.setResizable(false);
 			stage.setTitle("Gestore Portineria");
 			stage.show();
-		} catch(Exception e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void changeScene(String fxml) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(fxml));
 		stage.setScene(new Scene(root));

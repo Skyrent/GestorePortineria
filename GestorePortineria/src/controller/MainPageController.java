@@ -74,6 +74,8 @@ public class MainPageController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	Launcher.stage.setWidth(655);        
+        Launcher.stage.setHeight(440);
     	this.keysManager = new KeysManagerImpl();
 		this.keysManager.getList().forEach(k -> this.keyList.getItems().add(k.getTag()));
     	this.employeesManager = new EmployeesManagerImpl();
@@ -259,6 +261,7 @@ public class MainPageController implements Initializable {
     	keysManager.clear();
     	employeesManager.clear();
     	Launcher launch = new Launcher();
+ 		Launcher.stage.setResizable(true);
 		launch.changeScene("/view/LogIn.fxml");
     }
     

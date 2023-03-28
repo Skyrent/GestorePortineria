@@ -8,7 +8,7 @@ module GestorePortineria {
 	requires transitive javafx.base;
 	requires javafx.controls;
 	requires javafx.fxml;
-	requires javafx.graphics;
+	requires transitive javafx.graphics;
 	requires org.junit.jupiter.api;
 	
 	opens application to javafx.graphics, javafx.fxml;

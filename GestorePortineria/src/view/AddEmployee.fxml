@@ -6,33 +6,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddEmployeeControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddEmployeeControl">
    <children>
-      <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
+      <Text layoutX="28.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="10.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="60.0">
+      <Text layoutX="13.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="10.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="105.0">
+      <Text layoutX="10.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="187.6953125" AnchorPane.topAnchor="170.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="10.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="150.0">
+      <Text layoutX="14.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="240.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtName" layoutX="121.0" layoutY="18.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="18.0" />
-      <TextField fx:id="txtSurname" layoutX="105.0" layoutY="62.0" AnchorPane.rightAnchor="30.0" />
-      <TextField fx:id="txtUsername" layoutX="122.0" layoutY="107.0" AnchorPane.rightAnchor="30.0" />
-      <TextField fx:id="txtPassword" layoutX="120.0" layoutY="152.0" />
-      <Button layoutX="87.0" layoutY="210.0" mnemonicParsing="false" onAction="#addUser" text="Aggiungi utente" AnchorPane.bottomAnchor="14.666666666666657" />
+      <TextField fx:id="txtName" layoutX="144.0" layoutY="75.0" prefHeight="25.0" prefWidth="147.0" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="30.0" />
+      <TextField fx:id="txtSurname" layoutX="120.0" layoutY="121.0" prefHeight="24.0" prefWidth="153.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="100.0" />
+      <TextField fx:id="txtUsername" layoutX="120.0" layoutY="168.0" prefHeight="24.0" prefWidth="153.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="170.0" />
+      <TextField fx:id="txtPassword" layoutX="138.0" layoutY="231.0" prefHeight="24.0" prefWidth="153.0" AnchorPane.topAnchor="240.0" />
+      <Button layoutX="71.0" layoutY="281.0" mnemonicParsing="false" onAction="#addUser" prefHeight="41.0" prefWidth="147.0" text="Aggiungi utente" AnchorPane.bottomAnchor="14.0" />
       <Text fx:id="wrongNewUser" fill="RED" layoutX="73.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font size="14.0" />

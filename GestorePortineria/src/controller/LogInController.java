@@ -1,7 +1,12 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import application.Launcher;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import model.EmployeesManager;
 import model.implementation.EmployeesManagerImpl;
 import javafx.event.ActionEvent;
@@ -9,7 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class LogInController {
+public class LogInController implements Initializable {
 	
     @FXML
     private PasswordField password;
@@ -20,8 +25,14 @@ public class LogInController {
     @FXML
     private Text wrongLogIn;
 
-    private EmployeesManager employees = new EmployeesManagerImpl();
+    private EmployeesManager employees;
     
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    	employees = new EmployeesManagerImpl();
+    	Launcher.stage.setWidth(325);        
+        Launcher.stage.setHeight(385);
+    }
     
     @FXML
     public void userLogIn(ActionEvent event) throws Exception {
@@ -34,8 +45,10 @@ public class LogInController {
      		wrongLogIn.setText("Credenziali non valide!");
  	}
  	
-	private void changeScene() throws Exception {
+	private void changeScene() throws IOException  {
  		Launcher app = new Launcher();
- 			 app.changeScene("/view/MainPage.fxml");
+ 		Launcher.stage.setResizable(true);
+ 		app.changeScene("/view/MainPage.fxml"); 	
+ 		Launcher.stage.setResizable(false);
  	}	
 }
