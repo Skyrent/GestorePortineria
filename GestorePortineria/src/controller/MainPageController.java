@@ -195,24 +195,28 @@ public class MainPageController implements Initializable {
 
     @FXML
     void modifyKey(ActionEvent event) throws SQLException {
-    	String selectedKey = this.keyList.getSelectionModel().getSelectedItem();
-        String newHolder = modifyKeyHolder.getText();
-        Iterator<Key> keyIterator = keysManager.getList().iterator();
-        while (keyIterator.hasNext()) {
-            Key temp = keyIterator.next();
-            if (temp.getTag().equals(selectedKey)) {
-            	Key key = new KeyImpl(temp.getTag(), newHolder, Optional.of(setCurrentDateTime()));
-            	keysManager.update(key);
-                break;
-            }
-        }
+    	if(!modifyKeyHolder.getText().isBlank()) {
+    		String selectedKey = this.keyList.getSelectionModel().getSelectedItem();
+        	String newHolder = modifyKeyHolder.getText();
+        	Iterator<Key> keyIterator = keysManager.getList().iterator();
+        	while (keyIterator.hasNext()) {
+            	Key temp = keyIterator.next();
+            	if (temp.getTag().equals(selectedKey)) {
+            		Key key = new KeyImpl(temp.getTag(), newHolder, Optional.of(setCurrentDateTime()));
+            		keysManager.update(key);
+            		break;
+            	}
+        	}
+    	}
     }
     
     @FXML
     void addKey(ActionEvent event) throws SQLException {
-    	if (!newKeyTag.getText().isBlank())
+    	if (!newKeyTag.getText().isBlank() && 
+    			!keyList.getItems().contains(newKeyTag.getText())) {
     		keysManager.add(new KeyImpl(newKeyTag.getText(), "Portineria", Optional.of(setCurrentDateTime())));
     		keyList.getItems().add(newKeyTag.getText());
+    	}
     }
     
     /*

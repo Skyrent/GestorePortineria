@@ -31,7 +31,7 @@ public static Stage stage;
 		stage.getScene().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 	} 
 	
-	public void launchApp() throws Exception {
+	public void launchApp() {
 			CreateDatabase.create();
 		 	launch();
 	}
