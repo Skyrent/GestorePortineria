@@ -23,7 +23,7 @@
          <top>
             <HBox prefHeight="60.0" prefWidth="651.0" style="-fx-background-color: #155679;" BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestore Portineria" textAlignment="CENTER" translateX="15.0" translateY="23.0" wrappingWidth="275.1002197265625">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestore Portineria" textAlignment="CENTER" translateX="5.0" translateY="23.0" wrappingWidth="275.1002197265625">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>

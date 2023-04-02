@@ -30,8 +30,6 @@ public class LogInController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	employees = new EmployeesManagerImpl();
-    	Launcher.stage.setWidth(325);        
-        Launcher.stage.setHeight(385);
     }
     
     @FXML

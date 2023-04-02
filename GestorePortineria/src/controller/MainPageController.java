@@ -74,8 +74,6 @@ public class MainPageController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	Launcher.stage.setWidth(655);        
-        Launcher.stage.setHeight(460);
     	this.keysManager = new KeysManagerImpl();
 		this.keysManager.getList().forEach(k -> this.keyList.getItems().add(k.getTag()));
     	this.employeesManager = new EmployeesManagerImpl();
