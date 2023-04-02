@@ -1,4 +1,4 @@
- <project xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
          https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -16,6 +16,7 @@
   </properties>
   
   <build>
+	  
     <sourceDirectory>src/</sourceDirectory>
     <resources>
       <resource>
@@ -27,6 +28,7 @@
     </resources>
     
     <plugins>
+		
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
@@ -35,76 +37,58 @@
           <target>17</target>
         </configuration>
       </plugin>
-    <plugin>
-    <artifactId>maven-assembly-plugin</artifactId>
-    <configuration>
-        <archive>
+      
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
             <manifest>                 
-                <mainClass>application.Main</mainClass>
-            </manifest>
-        </archive>
-        <descriptorRefs>
+              <mainClass>application.Main</mainClass>
+              </manifest>
+          </archive>
+          <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
-        </descriptorRefs>
-    </configuration>
-   </plugin>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+      
     </plugins>
+    
   </build>
 
   <dependencies>
   
-  <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.2.0</version>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.2.0</version>
     </dependency>
     
     <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.2.0</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.2.0</version>
     </dependency>
-    
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>19</version>
-      <classifier>win</classifier>
-    </dependency>
-    
+
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>19</version>
-      <classifier>linux</classifier>
+      <classifier>${javafx.platform}</classifier>
     </dependency>
     
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-graphics</artifactId>
       <version>19</version>
-      <classifier>win</classifier>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-graphics</artifactId>
-      <version>19</version>
-      <classifier>linux</classifier>
+      <classifier>${javafx.platform}</classifier>
     </dependency>
     
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
       <version>19</version>
-      <classifier>win</classifier>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>19</version>
-      <classifier>linux</classifier>
+      <classifier>${javafx.platform}</classifier>
     </dependency>
 
     <dependency>
@@ -112,6 +96,43 @@
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.41.0.0</version>
     </dependency>
+    
   </dependencies>
  	
+  <profiles>
+    <profile>
+      <id>windows-profile</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <properties>
+        <javafx.platform>win</javafx.platform>
+      </properties>
+    </profile>
+    <profile>
+      <id>mac-profile</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <javafx.platform>mac</javafx.platform>
+      </properties>
+    </profile>
+    <profile>
+      <id>linux-profile</id>
+      <activation>
+        <os>
+          <family>unix</family>
+        </os>
+      </activation>
+      <properties>
+        <javafx.platform>linux</javafx.platform>
+      </properties>
+    </profile>
+  </profiles>
+ 
 </project>
