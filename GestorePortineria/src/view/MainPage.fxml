@@ -17,9 +17,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470" prefWidth="660" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainPageController">
    <children>
-      <BorderPane layoutX="-12.0" layoutY="-15.0" prefHeight="425.0" prefWidth="647.0">
+      <BorderPane layoutX="-12.0" layoutY="-15.0" prefHeight="490.0" prefWidth="673.0">
          <top>
             <HBox prefHeight="60.0" prefWidth="651.0" style="-fx-background-color: #155679;" BorderPane.alignment="CENTER">
                <children>
@@ -66,11 +66,11 @@
             </VBox>
          </left>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="380.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="utente" layoutY="2.0" prefHeight="365.0" prefWidth="500.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="utente" layoutX="-9.0" prefHeight="365.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Text layoutX="37.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="41.41796875">
+                        <Text layoutX="46.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="39.41796875">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -80,33 +80,33 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <Text layoutX="143.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" AnchorPane.topAnchor="40.41796875">
+                        <Text layoutX="162.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" AnchorPane.topAnchor="38.41796875">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtName" editable="false" layoutX="16.0" layoutY="67.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="16.0" />
-                        <TextField fx:id="txtSurname" editable="false" layoutX="141.0" layoutY="67.0" prefHeight="25.0" prefWidth="100.0" />
-                        <Text layoutX="48.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimo accesso">
+                        <TextField fx:id="txtName" editable="false" layoutX="23.0" layoutY="67.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="23.0" />
+                        <TextField fx:id="txtSurname" editable="false" layoutX="155.0" layoutY="67.0" prefHeight="31.0" prefWidth="100.0" />
+                        <Text layoutX="73.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimo accesso">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="txtUsername" editable="false" layoutX="21.0" layoutY="165.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="272.3333333333333" />
-                        <TextField fx:id="txtLastAccess" editable="false" layoutX="21.0" layoutY="265.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="272.3333333333333" />
-                        <AnchorPane fx:id="anchorRemoveUser" depthTest="DISABLE" layoutX="290.0" layoutY="13.0" prefHeight="158.0" prefWidth="175.0" style="-fx-background-color: #155679;" visible="false" AnchorPane.rightAnchor="27.999999999999943">
+                        <TextField fx:id="txtUsername" editable="false" layoutX="40.0" layoutY="164.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="279.0" />
+                        <TextField fx:id="txtLastAccess" editable="false" layoutX="41.0" layoutY="278.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.rightAnchor="278.0" />
+                        <AnchorPane fx:id="anchorRemoveUser" depthTest="DISABLE" layoutX="282.0" layoutY="41.0" prefHeight="158.0" prefWidth="175.0" style="-fx-background-color: #155679;" visible="false" AnchorPane.rightAnchor="62.0">
                            <children>
                               <Button layoutX="42.0" layoutY="107.0" mnemonicParsing="false" onAction="#removeEmployee" text="Rimuovi" />
                               <ListView fx:id="listRemovibleEmployee" layoutX="7.0" layoutY="29.0" prefHeight="69.0" prefWidth="161.0" />
                            </children>
                         </AnchorPane>
-                        <Button layoutX="278.0" layoutY="258.0" mnemonicParsing="false" onAction="#newUser" prefHeight="40.0" prefWidth="200.0" text="Registra utente" AnchorPane.rightAnchor="15.333333333333314" />
-                        <Button layoutX="278.0" layoutY="197.0" mnemonicParsing="false" onAction="#removeUserCall" prefHeight="40.0" prefWidth="200.0" text="Cancella utente" AnchorPane.rightAnchor="15.333333333333314" />
+                        <Button layoutX="269.0" layoutY="289.0" mnemonicParsing="false" onAction="#newUser" prefHeight="40.0" prefWidth="200.0" text="Registra utente" AnchorPane.rightAnchor="50.0" />
+                        <Button layoutX="269.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeUserCall" prefHeight="40.0" prefWidth="200.0" text="Cancella utente" AnchorPane.rightAnchor="50.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="registro" prefHeight="354.0" prefWidth="493.0" visible="false">
+                  <AnchorPane fx:id="registro" prefHeight="355.0" prefWidth="521.0" visible="false">
                      <children>
-                        <TabPane prefHeight="355.0" prefWidth="491.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane prefHeight="355.0" prefWidth="521.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Dipendenti">
                                  <content>
@@ -134,7 +134,7 @@
                         </TabPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="keys" layoutY="-1.0" prefHeight="357.0" prefWidth="493.0" visible="false">
+                  <AnchorPane fx:id="keys" layoutY="-1.0" prefHeight="400.0" prefWidth="516.0" visible="false">
                      <children>
                         <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addKey" prefHeight="100.0" prefWidth="150.0" text="Aggiungi chiave" />
                         <Button layoutX="14.0" layoutY="129.0" mnemonicParsing="false" onAction="#modifyKey" prefHeight="100.0" prefWidth="150.0" text="Detentore" />

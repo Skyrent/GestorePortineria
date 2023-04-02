@@ -15,12 +15,12 @@ import model.NoteManager;
 public class NoteManagerImpl implements NoteManager {
 
 	private static final Set<Note> notes = new HashSet<>();
-	
+
 	public NoteManagerImpl() {
 		if (NoteManagerImpl.notes.isEmpty())
 			this.getData();
 	}
-	
+
     private void getData() {
 		try (Connection connection = DataManager.getConnection();
 			Statement statement = connection.createStatement();
@@ -32,10 +32,10 @@ public class NoteManagerImpl implements NoteManager {
 				notes.add(note);
 			}
 		} catch (SQLException e) {
-		System.out.println("Errore nella lettura del Database: " + e); 
+		System.out.println("Errore nella lettura del Database: " + e);
 		}
     }
-    
+
 	@Override
 	public void add(Note note) throws SQLException {
         try (Connection connection = DataManager.getConnection();
@@ -48,7 +48,7 @@ public class NoteManagerImpl implements NoteManager {
         } catch (SQLException e) {
             System.out.println("Errore nell'aggiunta di una chiave al database: " + e);
         }
-        		
+
 	}
 
 	@Override

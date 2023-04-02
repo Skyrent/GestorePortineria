@@ -9,8 +9,10 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import model.Employee;
 import model.EmployeesManager;
 import model.implementation.EmployeeImpl;
@@ -21,7 +23,7 @@ class EmployeesTest {
 
 	private EmployeesManager employeesManager;
 	private Employee employee1, employee2;
-	
+
     @BeforeEach
     void setUp() {
     	if(DatabaseTools.isPresent())
@@ -31,7 +33,7 @@ class EmployeesTest {
         employee1 = new EmployeeImpl("Paolo", "Rossi", "Paolo.Rossi", "password123", Optional.empty());
         employee2 = new EmployeeImpl("Silvia", "Verdi", "Silvia.Verdi", "password123", Optional.empty());
     }
-	
+
 	@Test
 	void testEmployee() {
 		assertTrue(employee1.getUsername().equals("Paolo.Rossi"));
@@ -39,7 +41,7 @@ class EmployeesTest {
 		assertTrue(employee1.logged());
 		assertFalse(employee2.logged());
 	}
-    
+
     @Test
     void testAdd() {
     	assertTrue(DatabaseTools.isPresent());
@@ -52,13 +54,13 @@ class EmployeesTest {
         assertTrue(expected.contains(employee1));
         boolean b = false;
 		try {
-        	employeesManager.getList().add(employee2);     	
+        	employeesManager.getList().add(employee2);
         } catch (UnsupportedOperationException e) {
         	b = true;
         }
         assertTrue(b);
     }
-    
+
     @Test
     void testUpdate () {
     	DatabaseTools.isPresent();
@@ -70,7 +72,7 @@ class EmployeesTest {
     	Employee test = employeesManager.getList().stream().filter(e -> e.getUsername().equals("Mario.Rossi")).findFirst().get();
     	assertEquals(test, new EmployeeImpl("Mario", "Rossi", "Mario.Rossi", "password123", Optional.of("21/03 11:15")));
     }
-    
+
     @Test
     void testRemove() {
     	DatabaseTools.isPresent();

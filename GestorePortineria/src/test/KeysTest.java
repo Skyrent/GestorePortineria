@@ -9,8 +9,10 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import model.Key;
 import model.KeysManager;
 import model.implementation.KeyImpl;
@@ -36,9 +38,9 @@ class KeysTest {
 		assertTrue(key1.getTag().equals("tag1"));
 		assertEquals("holder2", key2.getHolder());
 		assertEquals(null, key2.getLastAccess());
-		assertEquals("21/03 11:15", key1.getLastAccess());		
+		assertEquals("21/03 11:15", key1.getLastAccess());
     }
-    
+
     @Test
     void testAdd() {
         try {
@@ -96,5 +98,5 @@ class KeysTest {
         Set<Key> expected = new HashSet<>(keysManager.getList());
         assertFalse(expected.contains(key1));
     }
-        
+
 }

@@ -18,13 +18,13 @@ import model.implementation.KeysManagerImpl;
 import model.implementation.NoteManagerImpl;
 
 public class DatabaseTest {
-	
+
     @BeforeEach
     void setUp() {
     	if(DatabaseTools.isPresent())
     		DatabaseTools.delete();
     }
-    
+
     // Creazione e controllo del database, esso appena creato deve contenere un account admin
     @Test
     void testCreateDatabase() {
@@ -35,7 +35,7 @@ public class DatabaseTest {
     	assertEquals(test.getList().size(), 1);
     	assertEquals(test.getList().stream().findFirst().get(), new EmployeeImpl("admin", "admin", "admin", "admin", Optional.empty()));
     }
-    
+
     //Creazione e controllo del database, esso non deve contenere alcuna chiave o nota alla creazione
     @Test
     void testFeatures() {
@@ -47,5 +47,5 @@ public class DatabaseTest {
     	assertTrue(keyTest.getList().isEmpty());
     	assertTrue(noteTest.getList().isEmpty());
     }
-      
+
 }

@@ -8,9 +8,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import model.Note;
 import model.NoteManager;
 import model.implementation.NoteImpl;
@@ -38,11 +40,11 @@ class NoteTest {
             noteManager.add(note1);
         } catch (SQLException e) {
             fail("Error adding notes to database");
-        } 
+        }
         assertFalse(noteManager.getList().isEmpty());
         assertEquals(1, noteManager.getList().size());
     }
-    
+
     @AfterEach
     void testAdd() {
         try {
@@ -55,5 +57,5 @@ class NoteTest {
         Set<Note> expected = new HashSet<>(noteManager.getList());
         assertTrue(expected.contains(note2));
     }
-    
+
 }

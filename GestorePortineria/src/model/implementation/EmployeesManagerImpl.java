@@ -1,6 +1,10 @@
 package model.implementation;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -16,9 +20,9 @@ public class EmployeesManagerImpl implements EmployeesManager {
 
     public EmployeesManagerImpl() {
     	if(employees.isEmpty())
-    		this.getData();       
+    		this.getData();
     }
-    
+
     private void getData() {
         if (EmployeesManagerImpl.employees.isEmpty()) {
             try (Connection connection = DataManager.getConnection();
@@ -94,7 +98,7 @@ public class EmployeesManagerImpl implements EmployeesManager {
 
 	@Override
 	public Set<Employee> getList() {
-		return Collections.unmodifiableSet(employees); 
+		return Collections.unmodifiableSet(employees);
 	}
 
 	@Override

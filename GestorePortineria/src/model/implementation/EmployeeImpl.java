@@ -2,6 +2,7 @@ package model.implementation;
 
 import java.util.Objects;
 import java.util.Optional;
+
 import model.Employee;
 
 public class EmployeeImpl implements Employee {
@@ -11,9 +12,9 @@ public class EmployeeImpl implements Employee {
 	private final String username;
 	private final String password;
 	private Optional<String> lastAccess;
-	private boolean loggedIn = false, 
+	private boolean loggedIn = false,
 					passwordAccess = true;
-	
+
 	public EmployeeImpl(String name, String surname, String username, String password, Optional<String> lastAccess) {
 		this.name = name;
 		this.surname = surname;
@@ -22,7 +23,7 @@ public class EmployeeImpl implements Employee {
 		this.lastAccess = lastAccess;
 		this.loggedIn = false;
 	}
-	
+
 	@Override
 	public String getName() {
 		return this.name;
@@ -32,12 +33,12 @@ public class EmployeeImpl implements Employee {
 	public String getSurname() {
 		return this.surname;
 	}
-	
+
 	@Override
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 	@Override
 	public String getPassword() {
 		if(passwordAccess) {
@@ -48,27 +49,27 @@ public class EmployeeImpl implements Employee {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public String getLastAccess() {
 		return this.lastAccess.orElse(null);
 	}
-	
+
 	@Override
 	public boolean logged() {
 		return this.loggedIn;
 	}
-	
+
 	@Override
 	public void setLastAccess(String lastAccess) {
 		this.lastAccess = Optional.of(lastAccess);
 	}
-	
+
 	@Override
 	public boolean canLogIn(String username, String password) {
 	    if (this.getUsername().equals(username) && this.password.equals(password)) {
 	    	this.loggedIn = true;
-	    } 
+	    }
 	   	return this.loggedIn;
 	}
 
@@ -81,9 +82,7 @@ public class EmployeeImpl implements Employee {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		EmployeeImpl other = (EmployeeImpl) obj;
 		return Objects.equals(lastAccess, other.lastAccess) && loggedIn == other.loggedIn
@@ -91,6 +90,6 @@ public class EmployeeImpl implements Employee {
 				&& Objects.equals(surname, other.surname) && Objects.equals(username, other.username);
 	}
 
-	
-	
+
+
 }

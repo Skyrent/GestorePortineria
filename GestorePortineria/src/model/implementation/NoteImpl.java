@@ -6,15 +6,15 @@ import model.Note;
 
 
 public class NoteImpl implements Note {
-	
+
 	private final String note;
 	private final String creationDate;
-	
+
 	public NoteImpl(String note, String creationDate) {
 		this.note = note;
 		this.creationDate = creationDate;
 	}
-	
+
 	@Override
     public String getCreationDate() {
 		return creationDate;
@@ -34,9 +34,7 @@ public class NoteImpl implements Note {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		NoteImpl other = (NoteImpl) obj;
 		return Objects.equals(creationDate, other.creationDate) && Objects.equals(note, other.note);

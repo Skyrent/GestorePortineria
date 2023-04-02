@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -24,22 +25,22 @@ public class AddEmployeeControl {
 
 	    @FXML
 	    private TextField txtUsername;
-	    
+
 	    @FXML
 	    private Text wrongNewUser;
 
 	    private DataManager<Employee> employeesManager = new EmployeesManagerImpl();
-	    
+
 	    @FXML
 	    void addUser(ActionEvent event) throws SQLException {
-	    	if (!txtName.getText().isBlank() || 
-	    		!txtSurname.getText().isBlank() || 
-	    		!txtUsername.getText().isBlank() || 
+	    	if (!txtName.getText().isBlank() ||
+	    		!txtSurname.getText().isBlank() ||
+	    		!txtUsername.getText().isBlank() ||
 	    		!txtPassword.getText().isBlank()) {
 	    		employeesManager.add(new EmployeeImpl(txtName.getText(),
-	    											  txtSurname.getText(), 
+	    											  txtSurname.getText(),
 	    	    									  txtUsername.getText(),
-	    	    									  txtPassword.getText(),									  
+	    	    									  txtPassword.getText(),
 	    	    									  Optional.empty()));
 	    	    txtName.getScene().getWindow().hide();
 	    	}

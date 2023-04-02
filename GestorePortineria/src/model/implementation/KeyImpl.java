@@ -16,17 +16,17 @@ public class KeyImpl implements Key {
 		this.holder = holder;
 		this.lastAccess = lastAccess;
 	}
-	
+
 	@Override
 	public String getTag() {
 		return this.tag;
 	}
-	
+
 	@Override
 	public String getHolder() {
 		return this.holder;
 	}
-	
+
 	@Override
 	public String getLastAccess() {
 		return this.lastAccess.orElse(null);
@@ -36,7 +36,7 @@ public class KeyImpl implements Key {
 	public void setHolder(String holder){
 		this.holder = holder;
 	}
-	
+
 	@Override
 	public void setLastAccess(String lastAccess) {
 		this.lastAccess = Optional.of(lastAccess);
@@ -51,9 +51,7 @@ public class KeyImpl implements Key {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if ((obj == null) || (getClass() != obj.getClass()))
 			return false;
 		KeyImpl other = (KeyImpl) obj;
 		return Objects.equals(holder, other.holder) && Objects.equals(lastAccess, other.lastAccess)

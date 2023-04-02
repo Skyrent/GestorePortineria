@@ -1,21 +1,21 @@
 package controller;
 
 import java.io.IOException;
-import javafx.fxml.Initializable;
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Optional;
+import java.util.ResourceBundle;
+
 import application.Launcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -33,8 +33,8 @@ import model.Key;
 import model.KeysManager;
 import model.Note;
 import model.NoteManager;
-import model.implementation.KeyImpl;
 import model.implementation.EmployeesManagerImpl;
+import model.implementation.KeyImpl;
 import model.implementation.KeysManagerImpl;
 import model.implementation.NoteImpl;
 import model.implementation.NoteManagerImpl;
@@ -43,37 +43,39 @@ public class MainPageController implements Initializable {
 
     @FXML
     private TableView<Employee> employeesTable;
-    
+
     @FXML
     private TableView<Key> keysTable;
 
     @FXML
     private AnchorPane registro, utente, anchorRemoveUser, keys, note;
-    
+
     @FXML
     private ListView<String> listRemovibleEmployee, keyList;
 
     @FXML
     private TableColumn<Employee, String> tableCognome, tableLastAccess, tableNome;
-    
+
     @FXML
     private TableColumn<Key, String> tabbleKeyTag, tableKeyHolder, tableKeyLastAccess;
-    
+
     @FXML
     private ChoiceBox<String> noteBox;
 
     @FXML
     private TextArea textArea;
-    
+
     @FXML
     private TextField txtLastAccess, txtName, txtSurname, txtUsername, newKeyTag, modifyKeyHolder;
-        
+
     private KeysManager keysManager;
     private EmployeesManager employeesManager;
     private NoteManager noteManager;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	Launcher.stage.setHeight(470);
+    	Launcher.stage.setWidth(660);
     	this.keysManager = new KeysManagerImpl();
 		this.keysManager.getList().forEach(k -> this.keyList.getItems().add(k.getTag()));
     	this.employeesManager = new EmployeesManagerImpl();
@@ -86,37 +88,37 @@ public class MainPageController implements Initializable {
 			e.printStackTrace();
 		}
     }
-    
+
     /*
      *  SEZIONE DEDICATA ALL'UTENTE
      */
-    
+
     @FXML
     void userCall(ActionEvent event) throws SQLException {
     	if(this.registro.isVisible() || this.keys.isVisible() || this.note.isVisible()) {
     		this.registro.setVisible(false);
         	this.keys.setVisible(false);
         	this.note.setVisible(false);
-    	}    	
+    	}
     	Employee user = employeesManager.getList().stream().filter(x -> x.logged()).findFirst().get();
     	this.txtName.setText(user.getName());
     	this.txtSurname.setText(user.getSurname());
     	this.txtUsername.setText(user.getUsername());
     	employeesManager.update(user, setCurrentDateTime());
     	this.txtLastAccess.setText(user.getLastAccess());
-    	
+
     	this.utente.setVisible(true);
     }
-    
+
     @FXML
     void removeUserCall(ActionEvent event) {
-    	if (!anchorRemoveUser.isVisible()) 
+    	if (!anchorRemoveUser.isVisible())
     		employeesManager.getList().forEach(e -> { if(!e.getUsername().equals(this.txtUsername.getText()))
-    				                           		 	  listRemovibleEmployee.getItems().add(e.getUsername()); 
+    				                           		 	  listRemovibleEmployee.getItems().add(e.getUsername());
     												});
     	anchorRemoveUser.setVisible(true);
     }
-    
+
     @FXML
     void removeEmployee(ActionEvent event) throws SQLException {
         String selectedEmployee = listRemovibleEmployee.getSelectionModel().getSelectedItem();
@@ -126,7 +128,7 @@ public class MainPageController implements Initializable {
         }
     	anchorRemoveUser.setVisible(false);
     }
-    
+
     @FXML
     void newUser(ActionEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(getClass().getResource("/view/AddEmployee.fxml"));
@@ -137,7 +139,7 @@ public class MainPageController implements Initializable {
 		stage.setResizable(false);
     	stage.show();
     }
-    
+
     /*
      * SEZIONE DEDICATA AL REGISTRO
      */
@@ -165,7 +167,7 @@ public class MainPageController implements Initializable {
 
     	    registro.setVisible(true);
     	}
-    
+
     /*
      * SEZIONE DEDICATA ALLA GESTIONE DELLE CHIAVI
      */
@@ -196,9 +198,7 @@ public class MainPageController implements Initializable {
     	if(!modifyKeyHolder.getText().isBlank()) {
     		String selectedKey = this.keyList.getSelectionModel().getSelectedItem();
         	String newHolder = modifyKeyHolder.getText();
-        	Iterator<Key> keyIterator = keysManager.getList().iterator();
-        	while (keyIterator.hasNext()) {
-            	Key temp = keyIterator.next();
+        	for (Key temp : keysManager.getList()) {
             	if (temp.getTag().equals(selectedKey)) {
             		Key key = new KeyImpl(temp.getTag(), newHolder, Optional.of(setCurrentDateTime()));
             		keysManager.update(key);
@@ -207,20 +207,20 @@ public class MainPageController implements Initializable {
         	}
     	}
     }
-    
+
     @FXML
     void addKey(ActionEvent event) throws SQLException {
-    	if (!newKeyTag.getText().isBlank() && 
+    	if (!newKeyTag.getText().isBlank() &&
     			!keyList.getItems().contains(newKeyTag.getText())) {
     		keysManager.add(new KeyImpl(newKeyTag.getText(), "Portineria", Optional.of(setCurrentDateTime())));
     		keyList.getItems().add(newKeyTag.getText());
     	}
     }
-    
+
     /*
      * SEZIONE DEDICATA ALLE NOTE DEL PERSONALE
      */
-   
+
     @FXML
     void noteCall(ActionEvent event) throws SQLException {
     	if(this.registro.isVisible() || this.utente.isVisible() || this.keys.isVisible()) {
@@ -232,7 +232,7 @@ public class MainPageController implements Initializable {
     	        .max(Comparator.comparing(n -> n.getCreationDate()))
     	        .map(Note::getNote)
     	        .orElse(""));
-    	
+
 		this.note.setVisible(true);
     }
 
@@ -243,7 +243,7 @@ public class MainPageController implements Initializable {
     	this.noteManager.add(new NoteImpl(note, date));
     	this.noteBox.getItems().add(date);
     }
-    
+
 
    private void updateText(ActionEvent event) {
     	String textDate = this.noteBox.getValue();
@@ -253,11 +253,11 @@ public class MainPageController implements Initializable {
 				   .findFirst().orElse(" ");
 		this.textArea.setText(note);
     }
-    
+
     /*
      * ALTRO
      */
-    
+
     @FXML
     void logOut(ActionEvent event) throws Exception {
     	keysManager.clear();
@@ -266,7 +266,7 @@ public class MainPageController implements Initializable {
  		Launcher.stage.setResizable(true);
 		launch.changeScene("/view/LogIn.fxml");
     }
-    
+
 	private static String setCurrentDateTime() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM HH:mm:ss");
         Date date = new Date();

@@ -11,17 +11,17 @@ public class CreateDatabase {
     public static void create() {
 
         try (Connection connection = DataManager.getConnection()) {
-             
+
         	PreparedStatement employeeStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS Employees (" +
             		 												   		  "id INTEGER PRIMARY KEY, " +
             		 												   		  "name TEXT(50), " +
             		 												   		  "surname TEXT(50), " +
             		 												   		  "username TEXT(50) UNIQUE, " +
             		 												   		  "password TEXT(50), " +
-            		 												   		  "lastAccess TEXT(50))"); 
+            		 												   		  "lastAccess TEXT(50))");
         	employeeStatement.execute();
         	employeeStatement.close();
-        	
+
             PreparedStatement countStatement = connection.prepareStatement("SELECT COUNT(*) FROM Employees");
             ResultSet resultSet = countStatement.executeQuery();
 

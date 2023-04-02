@@ -17,12 +17,12 @@ import model.KeysManager;
 public class KeysManagerImpl implements KeysManager {
 
 	private	static final Set<Key> keys = new HashSet<>();
-	
+
     public KeysManagerImpl() {
     	if(keys.isEmpty())
     		this.getData();
     }
-    
+
     private void getData() {
         if (KeysManagerImpl.keys.isEmpty()) {
 			try (Connection connection = DataManager.getConnection();
@@ -36,7 +36,7 @@ public class KeysManagerImpl implements KeysManager {
 					keys.add(key);
 				}
 			} catch (SQLException e) {
-			System.out.println("Errore nella lettura del Database: " + e); 
+			System.out.println("Errore nella lettura del Database: " + e);
 			}
         }
     }
@@ -62,7 +62,7 @@ public class KeysManagerImpl implements KeysManager {
             System.out.println("Errore nell'aggiunta di una chiave al database: " + e);
         }
     }
-    
+
     @Override
     public void update(Key key) throws SQLException {
         try (Connection connection = DataManager.getConnection();
@@ -73,13 +73,13 @@ public class KeysManagerImpl implements KeysManager {
             updateStatement.executeUpdate();
             keys.forEach(e -> {
             				   if(e.getTag().equals(key.getTag()))
-            				   e.setHolder(key.getHolder());                
+            				   e.setHolder(key.getHolder());
 				   			   });
         } catch (SQLException e) {
             System.out.println("Errore nell'aggiornamento di una chiave nel database: " + e);
         }
     }
-    
+
 	@Override
 	public void remove(String key) throws SQLException {
         try (Connection connection = DataManager.getConnection();
@@ -94,12 +94,12 @@ public class KeysManagerImpl implements KeysManager {
 
 	@Override
 	public Set<Key> getList() {
-		return Collections.unmodifiableSet(keys); 
+		return Collections.unmodifiableSet(keys);
 	}
 
 	@Override
 	public void clear() {
 		keys.clear();
 	}
-	
+
 }
